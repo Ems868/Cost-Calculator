@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Multiplier Calculator</title>
+    <style>
+        /* Set the background color to orange */
+        body {
+            background-color: orange;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        label, p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        input[type="number"] {
+            padding: 5px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Source Solutions Shein Calculator (Already includes customs and shipping)</h1>
+    
+    <!-- Section for Multiplier 12 -->
+    <div>
+        <label for="cost12">Enter USD amount for Clothing: </label>
+        <input type="number" id="cost12" placeholder="USD" />
+        <button onclick="calculateMultiplier(12)">Calculate</button>
+        <p>Total TTD Cost for Clothing: $<span id="result12">0</span></p>
+    </div>
+
+    <!-- Section for Multiplier 15 -->
+    <div>
+        <label for="cost15">Enter USD amount for Accessories: </label>
+        <input type="number" id="cost15" placeholder="USD" />
+        <button onclick="calculateMultiplier(15)">Calculate</button>
+        <p>Total TTD Cost for Accessories: $<span id="result15">0</span></p>
+    </div>
+
+    <!-- Total TTD Section -->
+    <div>
+        <p>Total Cost: $<span id="totalCost">0</span></p>
+    </div>
+
+    <!-- Reset Button -->
+    <button onclick="resetFields()">Reset</button>
+
+    <script>
+        function calculateMultiplier(multiplier) {
+            const costId = 'cost' + multiplier;
+            const resultId = 'result' + multiplier;
+
+            // Get the cost from the input field
+            const cost = parseFloat(document.getElementById(costId).value);
+            
+            if (isNaN(cost) || cost <= 0) {
+                alert('Please enter a valid cost greater than 0.');
+                return;
+            }
+
+            // Calculate the result for the given multiplier
+            const result = cost * multiplier;
+
+            // Display the result for the multiplier
+            document.getElementById(resultId).textContent = result.toFixed(2);
+
+            // Update the total cost
+            updateTotalCost();
+        }
+
+        function updateTotalCost() {
+            // Get the individual results for multipliers
+            const result12 = parseFloat(document.getElementById('result12').textContent);
+            const result15 = parseFloat(document.getElementById('result15').textContent);
+
+            // Calculate and display the total cost
+            const totalCost = result12 + result15;
+            document.getElementById('totalCost').textContent = totalCost.toFixed(2);
+        }
+
+        // Function to reset input fields and results
+        function resetFields() {
+            document.getElementById('cost12').value = '';
+            document.getElementById('cost15').value = '';
+            document.getElementById('result12').textContent = '0';
+            document.getElementById('result15').textContent = '0';
+            document.getElementById('totalCost').textContent = '0';
+        }
+    </script>
+
+</body>
+</html>
